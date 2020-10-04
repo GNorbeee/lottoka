@@ -17,8 +17,12 @@ namespace lottoka
             int[] huzasok = new int[4];
             string[] fajl;
             List<int> szamok = new List<int>();
-            Beolvasas(szamok);
-            var utvonal = @"otos.csv";
+            Beolvasas beolvas = new Beolvasas();
+            for (int i = 0; i < 5; i++)
+            {
+                beolvas.szambeolvas(szamok);
+            }
+            var utvonal = "otos.csv";
             using (StreamReader sr = new StreamReader(utvonal))
             {
                 while (!sr.EndOfStream)
@@ -38,29 +42,10 @@ namespace lottoka
                         huzasok[counter - 2]++;
                     }
                 }
-
             }
-            Console.WriteLine("Kettes talalat:" + huzasok[0]);
-            Console.WriteLine("Harmas talalat:" + huzasok[1]);
-            Console.WriteLine("Negyes talalat:" + huzasok[2]);
-            Console.WriteLine("Otos talalat:" + huzasok[3]);
+            Kiiras kiir = new Kiiras();
+            kiir.kiirja(huzasok);
             Console.ReadLine();
-        }
-
-        private static void Beolvasas(List<int> szamok)
-        {
-            while (szamok.Count <= 4)
-            {
-                int szam = int.Parse(Console.ReadLine());
-                if (szamok.Contains(szam))
-                {
-                    Console.WriteLine("Ezt a szamot mar megadtad. Kerlek adj meg egy masik szamot.");
-                }
-                else
-                {
-                    szamok.Add(szam);
-                }
-            }
         }
     }
 }
